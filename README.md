@@ -75,7 +75,7 @@ AWS Services (SSM, CloudWatch)
 
 ## AWS Services Used
 - VPC
-- EC2 (upcoming)
+- EC2
 - IAM
 - Application Load Balancer (upcoming)
 - Auto Scaling (upcoming)
