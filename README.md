@@ -10,6 +10,7 @@ The project is built incrementally, following real-world DevOps practices.
 - Phase 2: IAM Roles and Security Groups
 - Phase 3: EC2 Application Server and Golden AMI creation
 - Phase 4: Application Load Balancer (ALB) Integration and Validation
+- Phase 5: Auto Scaling Group (ASG) and Self-Healing Infrastructure
 
 ## Architecture
 
@@ -64,6 +65,17 @@ The project is built incrementally, following real-world DevOps practices.
 
 ---
 
+### Phase 5 – Self-Healing & Scaling (Auto Scaling Group)
+![ASG Architecture](architecture/phase-5-asg.png)
+
+**Scaling and recovery behavior**
+- Launch Template created from golden AMI
+- Auto Scaling Group deployed across multiple private subnets
+- Desired capacity maintained automatically
+- Failed instances replaced without manual intervention
+
+---
+
 ### End-to-End Flow
 
 ```text
@@ -90,19 +102,18 @@ AWS Services (SSM, CloudWatch)
 - EC2
 - IAM
 - Application Load Balancer
-- Auto Scaling (upcoming)
+- Auto Scaling Group
 - CloudWatch (upcoming)
 
 ## Cost Awareness
-This project is designed with AWS Free Tier constraints in mind.
+This project is designed with AWS Free Tier constraints in mind while still demonstrating production-grade architecture
 
 - EC2 instances are used temporarily and terminated after AMI creation
-- Application Load Balancers are provisioned only for validation and deleted immediately
+- Application Load Balancers are provisioned only for short-term validation and deleted immediately
+- Auto Scaling Groups are configured with minimal desired capacity
 - NAT Gateways are intentionally avoided unless explicitly required
 
-This approach demonstrates production-grade architecture without incurring unnecessary cost.
-
+responsible cloud usage without unnecessary cost.
 
 ## Next Steps
-- Phase 5: Auto Scaling
 - Phase 6: Monitoring and Alerts
