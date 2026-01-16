@@ -9,6 +9,7 @@ The project is built incrementally, following real-world DevOps practices.
 - Phase 1: VPC Design and Network Isolation
 - Phase 2: IAM Roles and Security Groups
 - Phase 3: EC2 Application Server and Golden AMI creation
+- Phase 4: Application Load Balancer (ALB) Integration and Validation
 
 ## Architecture
 
@@ -52,6 +53,17 @@ The project is built incrementally, following real-world DevOps practices.
 
 ---
 
+### Phase 4 – Traffic Management (Application Load Balancer)
+![ALB Architecture](architecture/phase-4-alb.png)
+
+**Load balancing behavior**
+- Internet-facing ALB deployed in public subnets
+- Routes HTTP traffic to EC2 instances in private subnets
+- Health checks ensure traffic is sent only to healthy targets
+- ALB used temporarily for validation and deleted to control cost
+
+---
+
 ### End-to-End Flow
 
 ```text
@@ -77,15 +89,20 @@ AWS Services (SSM, CloudWatch)
 - VPC
 - EC2
 - IAM
-- Application Load Balancer (upcoming)
+- Application Load Balancer
 - Auto Scaling (upcoming)
 - CloudWatch (upcoming)
 
 ## Cost Awareness
-This project is designed to stay within AWS Free Tier limits. Billable resources such as Load Balancers and NAT Gateways are created only temporarily for validation and then terminated.
-- EC2 instances are terminated immediately after AMI creation to avoid unnecessary charges.
+This project is designed with AWS Free Tier constraints in mind.
+
+- EC2 instances are used temporarily and terminated after AMI creation
+- Application Load Balancers are provisioned only for validation and deleted immediately
+- NAT Gateways are intentionally avoided unless explicitly required
+
+This approach demonstrates production-grade architecture without incurring unnecessary cost.
+
 
 ## Next Steps
-- Phase 4: Load Balancing
 - Phase 5: Auto Scaling
 - Phase 6: Monitoring and Alerts
