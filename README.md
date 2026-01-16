@@ -86,5 +86,6 @@ This project is designed to stay within AWS Free Tier limits. Billable resources
 - EC2 instances are terminated immediately after AMI creation to avoid unnecessary charges.
 
 ## Next Steps
-- Phase 4: Load Balancing and Auto Scaling
-- Phase 5: Monitoring and Alerts
+- Phase 4: Load Balancing
+- Phase 5: Auto Scaling
+- Phase 6: Monitoring and Alerts
