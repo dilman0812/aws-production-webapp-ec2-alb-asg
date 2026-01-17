@@ -1,16 +1,17 @@
-# AWS Production-Ready Web Application (EC2 + ALB + ASG)
-
 ## Overview
-This project demonstrates the design and implementation of a production-grade web application infrastructure on AWS with a strong focus on security, scalability, and cost awareness.
+This project demonstrates the incremental design and implementation of a production-grade web application infrastructure on AWS with a strong focus on security, scalability, fault tolerance, observability, and cost awareness.
 
-The project is built incrementally, following real-world DevOps practices.
+The infrastructure is built step by step following real-world DevOps and cloud engineering practices, emphasizing intent, validation, and operational discipline rather than one-click deployments.
+
+---
 
 ## Phases Completed
-- Phase 1: VPC Design and Network Isolation
-- Phase 2: IAM Roles and Security Groups
-- Phase 3: EC2 Application Server and Golden AMI creation
-- Phase 4: Application Load Balancer (ALB) Integration and Validation
-- Phase 5: Auto Scaling Group (ASG) and Self-Healing Infrastructure
+- Phase 1: VPC Design and Network Isolation  
+- Phase 2: IAM Roles and Security Groups  
+- Phase 3: EC2 Application Server and Golden AMI Creation  
+- Phase 4: Application Load Balancer (ALB) Integration and Validation  
+- Phase 5: Auto Scaling Group (ASG) and Self-Healing Infrastructure  
+- Phase 6: Monitoring and Alerts (CloudWatch + SNS)  
 
 ## Architecture
 
@@ -76,6 +77,20 @@ The project is built incrementally, following real-world DevOps practices.
 
 ---
 
+### Phase 6 – Observability & Alerts
+![Monitoring & Alerts Architecture](architecture/phase-6-monitoring-alerts.png)
+
+**Monitoring and operational visibility**
+- CloudWatch used for metrics and alarms
+- SNS used for real-time email notifications
+- Alarms created at the Auto Scaling Group level to align with ephemeral infrastructure
+- Alert delivery validated without generating artificial load
+
+This phase ensures the system is not only deployed but also observable and operable in a production context.
+
+---
+
+
 ### End-to-End Flow
 
 ```text
@@ -103,17 +118,46 @@ AWS Services (SSM, CloudWatch)
 - IAM
 - Application Load Balancer
 - Auto Scaling Group
-- CloudWatch (upcoming)
+- CloudWatch
+- SNS
 
 ## Cost Awareness
-This project is designed with AWS Free Tier constraints in mind while still demonstrating production-grade architecture
+This project is designed with AWS Free Tier constraints in mind while still demonstrating production-grade architecture and operational behavior.
 
 - EC2 instances are used temporarily and terminated after AMI creation
 - Application Load Balancers are provisioned only for short-term validation and deleted immediately
-- Auto Scaling Groups are configured with minimal desired capacity
+- Auto Scaling Groups are configured with minimal desired capacity during testing
 - NAT Gateways are intentionally avoided unless explicitly required
+- Monitoring uses basic CloudWatch metrics and alarms to remain cost-efficient
 
-responsible cloud usage without unnecessary cost.
+This approach demonstrates responsible cloud usage without unnecessary expenditure.
 
-## Next Steps
-- Phase 6: Monitoring and Alerts
+## Repository Structure
+```text
+.
+├── README.md
+├── architecture/
+│   ├── phase-1-vpc.png
+│   ├── phase-2-iam-security.png
+│   ├── phase-3-ec2-ami.png
+│   ├── phase-4-alb.png
+│   └── phase-5-asg.png
+├── docs/
+│   ├── phase-1-vpc.md
+│   ├── phase-2-iam-security.md
+│   ├── phase-3-ec2-ami.md
+│   ├── phase-4-alb.md
+│   ├── phase-5-asg.md
+│   └── phase-6-monitoring-alerts.md
+└── screenshots/
+```
+
+## Key Takeaways
+This project demonstrates the ability to:
+- Design secure and isolated AWS networking
+- Enforce least-privilege identity and network access
+- Build immutable infrastructure using AMIs
+- Implement Layer 7 load balancing
+- Design self-healing systems with Auto Scaling
+- Monitor infrastructure health and design actionable alerts
+- Operate AWS environments with cost discipline
