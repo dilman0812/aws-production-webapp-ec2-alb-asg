@@ -34,13 +34,13 @@ The infrastructure is built step by step following real-world DevOps and cloud e
 - ALB Security Group → EC2 Security Group (HTTP 80 only)
 - ❌ No direct Internet → EC2 access
 - ❌ No SSH (Port 22) allowed
-> This phase ensures that application instances are not directly accessible and can only be reached through controlled, secure paths.
-
 
 **Identity flow**
 - EC2 instances assume IAM role (`ec2-prod-webapp-role`)
 - Permissions granted via IAM policies (SSM, CloudWatch)
 - No long-lived access keys
+
+> This phase ensures that application instances are not directly accessible and can only be reached through controlled, secure paths.
 
 ---
 
@@ -104,7 +104,7 @@ Internet
   |
   |  HTTP 80 only (Security Group)
   v
-[ EC2 Instances ]
+[ EC2 Instances (Auto Scaling Group) ]
   |
   |  IAM Role (No SSH, No Keys)
   v
@@ -142,6 +142,7 @@ This approach demonstrates responsible cloud usage without unnecessary expenditu
 │   ├── phase-3-ec2-ami.png
 │   ├── phase-4-alb.png
 │   └── phase-5-asg.png
+│   └── phase-6-monitoring-alerts.png
 ├── docs/
 │   ├── phase-1-vpc.md
 │   ├── phase-2-iam-security.md
@@ -161,3 +162,13 @@ This project demonstrates the ability to:
 - Design self-healing systems with Auto Scaling
 - Monitor infrastructure health and design actionable alerts
 - Operate AWS environments with cost discipline
+
+---
+
+## Author & Contact
+
+**Dilman Sandhu**  
+Aspiring DevOps / Cloud Engineer
+
+- GitHub: https://github.com/dilman0812
+- Email: contact.dilman@gmail.com
